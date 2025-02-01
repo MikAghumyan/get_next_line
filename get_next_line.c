@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-
+/*
 static char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
 	char	*substr;
@@ -28,7 +28,7 @@ static char	*ft_substr(char const *s, unsigned int start, size_t len)
 	ft_strlcpy(substr, s + start, len + 1);
 	return (substr);
 }
-
+*/
 static char	*ft_strfjoin(char *s1, char *s2)
 {
 	size_t	len;
@@ -64,7 +64,7 @@ static char *get_line(char *storage, char *line)
 		return (NULL);
 	}
 	line = storage;
-	storage = ft_substr(storage, endlptr - storage + 1, ft_strlen(endlptr + 1));
+	storage = ft_substr(storage, (int)(endlptr - storage) + 1, ft_strlen(endlptr + 1));
 	if(!storage)
 	{
 		free(line);
@@ -81,6 +81,7 @@ static char	*read_file(char *buffer, char *storage, int fd)
 {
 	int		read_bytes;
 	char	*temp;
+	//static int k = 1;
 
 	read_bytes = 1;
 	while (read_bytes > 0)
@@ -98,7 +99,7 @@ static char	*read_file(char *buffer, char *storage, int fd)
 		if (ft_strchr(storage, '\n'))
 			break;
 	}
-	//printf("%s\n",storage);
+	//printf("%d\n%s\n", k++, storage);
 	/*write(1, storage, 5);*/
 	/*printf("%s\n", storage);*/
 	return (storage);
@@ -108,6 +109,7 @@ char	*get_next_line(int fd)
 {
 	static char	*storage = NULL;
 	char		*temp;
+	static int k = 0;
 
 	temp =  (char *)malloc(BUFFER_SIZE + 1);
 	if (!fd || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
@@ -121,6 +123,7 @@ char	*get_next_line(int fd)
 	storage = read_file(temp, storage, fd);
 	if (!storage)
 		return (NULL);
+	printf("%d:\n %s\n", ++k, storage);
 	temp = get_line(storage, temp);
 	return (temp);
 }
@@ -148,14 +151,14 @@ int	main(int argc, char **argv)
 			free(line);
 			line = get_next_line(fd);
 		}*/
-		// get_next_line(fd);
-		// get_next_line(fd);
-		// get_next_line(fd);
-		// get_next_line(fd);
-		printf("%s\n", get_next_line(fd));
-		printf("%s\n", get_next_line(fd));
-		printf("%s\n", get_next_line(fd));
-		printf("%s\n", get_next_line(fd));
+		get_next_line(fd);
+		get_next_line(fd);
+		get_next_line(fd);
+		get_next_line(fd);
+		//printf("%s\n", get_next_line(fd));
+		//printf("%s\n", get_next_line(fd));
+		//printf("%s\n", get_next_line(fd));
+		//printf("%s\n", get_next_line(fd));
 		close(fd);
 	}
 	else
