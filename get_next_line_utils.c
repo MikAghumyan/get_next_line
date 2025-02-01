@@ -70,31 +70,22 @@ char	*ft_strchr(const char *s, int c)
 	return (NULL);
 }
 
-char	*ft_substr(char const *s, unsigned int start, size_t len)
+char	*ft_strdup(const char *s)
 {
-	unsigned int	s_size;
-	size_t			i;
-	char			*substr;
+	char	*str;
+	size_t	len;
+	size_t	i;
 
-	if (!s)
-		return (NULL);
-	s_size = ft_strlen(s);
-	if (start >= s_size)
-	{
-		substr = (char *)malloc(1);
-		if (!substr)
-			return (NULL);
-		substr[0] = '\0';
-		return (substr);
-	}
-	if (len > s_size - start)
-		len = s_size - start;
-	substr = (char *)malloc((len + 1) * sizeof(char));
-	if (!substr)
+	len = ft_strlen(s) + 1;
+	str = malloc(len);
+	if (str == NULL)
 		return (NULL);
 	i = 0;
-	while (i < len)
-		substr[i++] = s[start++];
-	substr[i] = '\0';
-	return (substr);
+	while(s[i])
+	{
+		str[i] = s[i];
+		i++;
+	}
+	str[i] = '\0';
+	return (str);
 }
