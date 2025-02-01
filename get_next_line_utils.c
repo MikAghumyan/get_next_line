@@ -56,3 +56,29 @@ size_t	ft_strlen(const char *s)
 		i++;
 	return (i);
 }
+
+char	*ft_strchr(const char *s, int c)
+{
+	while (*s)
+	{
+		if (*s == (const char)c)
+			return ((char *)s);
+		s++;
+	}
+	if ((const char)c == '\0')
+		return ((char *)s);
+	return (NULL);
+}
+
+char	*ft_strdup(const char *s)
+{
+	char	*str;
+	size_t	len;
+
+	len = ft_strlen(s) + 1;
+	str = malloc(len);
+	if (str == NULL)
+		return (NULL);
+	ft_strlcpy(str, s, len);
+	return (str);
+}
