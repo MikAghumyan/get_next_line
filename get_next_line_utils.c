@@ -6,7 +6,7 @@
 /*   By: maghumya <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 21:07:18 by maghumya          #+#    #+#             */
-/*   Updated: 2025/02/02 19:39:07 by maghumya         ###   ########.fr       */
+/*   Updated: 2025/02/02 21:26:18 by maghumya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ size_t	ft_strlen(const char *s)
 {
 	size_t	i;
 
+	if (!s)
+		return (0);
 	i = 0;
 	while (s[i])
 		i++;
@@ -64,10 +66,7 @@ char	*ft_strfjoin(char *s1, char *s2)
 	size_t	j;
 	size_t	len;
 
-	if (!s1)
-		len = ft_strlen(s2);
-	else
-		len = ft_strlen(s1) + ft_strlen(s2);
+	len = ft_strlen(s1) + ft_strlen(s2);
 	res = (char *)malloc(len + 1);
 	if (!res)
 		return (NULL);

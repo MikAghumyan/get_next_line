@@ -6,7 +6,7 @@
 /*   By: maghumya <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 21:07:34 by maghumya          #+#    #+#             */
-/*   Updated: 2025/02/02 20:17:52 by maghumya         ###   ########.fr       */
+/*   Updated: 2025/02/02 21:26:57 by maghumya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ static char	*cut_line(char *line)
 	line[i + 1] = '\0';
 	if (!(*cut_buff))
 		cut_buff = NULL;
-	// printf("%s\n", line);
 	return (cut_buff);
 }
 
@@ -82,13 +81,14 @@ char	*get_next_line(int fd)
 	storage = cut_line(line);
 	return (line);
 }
+/*
 #include <fcntl.h>
 #include <stdio.h>
 
 int	main(int argc, char **argv)
 {
-	int fd;
-	char *line;
+	int		fd;
+	char	*line;
 
 	if (argc == 2)
 	{
@@ -99,12 +99,12 @@ int	main(int argc, char **argv)
 			return (1);
 		}
 		line = get_next_line(fd);
-		while (line)
-		{
-			printf("%s", line);
-			free(line);
-			line = get_next_line(fd);
-		}
+		// while (line)
+		// {
+		// 	printf("%s", line);
+		// 	free(line);
+		// 	line = get_next_line(fd);
+		// }
 		get_next_line(fd);
 		get_next_line(fd);
 		get_next_line(fd);
@@ -120,7 +120,7 @@ int	main(int argc, char **argv)
 		get_next_line(fd);
 		get_next_line(fd);
 		get_next_line(fd);
-		printf("%s\n", get_next_line(fd));
+		// printf("%s\n", get_next_line(fd));
 		// printf("%s\n", get_next_line(fd));
 		// printf("%s\n", get_next_line(fd));
 		// printf("%s\n", get_next_line(fd));
@@ -130,3 +130,4 @@ int	main(int argc, char **argv)
 		printf("Error: Invalid number of arguments\n");
 	return (0);
 }
+*/
