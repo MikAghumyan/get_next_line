@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: maghumya <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 21:07:34 by maghumya          #+#    #+#             */
-/*   Updated: 2025/02/02 21:26:57 by maghumya         ###   ########.fr       */
+/*   Updated: 2025/02/03 15:13:15 by maghumya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ char	*get_next_line(int fd)
 	{
 		free(temp);
 		temp = NULL;
-		if(fd > 0 && fd < OPEN_MAX)
+		if (fd > 0 && fd < OPEN_MAX)
 		{
 			free(storage[fd]);
 			storage[fd] = NULL;

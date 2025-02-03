@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*   get_next_line_utils_bonus.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: maghumya <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 21:07:18 by maghumya          #+#    #+#             */
-/*   Updated: 2025/02/02 21:26:18 by maghumya         ###   ########.fr       */
+/*   Updated: 2025/02/03 15:12:55 by maghumya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 void	*ft_calloc(size_t nmemb, size_t size)
 {
-	void	*ptr;
-	size_t i;
-	unsigned char *sptr;
+	void			*ptr;
+	size_t			i;
+	unsigned char	*sptr;
 
 	if (nmemb != 0 && size > ~(size_t)0 / nmemb)
 		return (NULL);
