@@ -6,7 +6,7 @@
 /*   By: maghumya <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 21:07:34 by maghumya          #+#    #+#             */
-/*   Updated: 2025/02/02 21:26:57 by maghumya         ###   ########.fr       */
+/*   Updated: 2025/03/12 22:26:43 by maghumya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static char	*cut_line(char *line)
 		i++;
 	if (!line[i] || !line[i + 1])
 		return (NULL);
-	cut_buff = ft_strdup(&(line[i + 1]));
+	cut_buff = gnl_strdup(&(line[i + 1]));
 	if (!cut_buff)
 		return (NULL);
 	line[i + 1] = '\0';
@@ -48,10 +48,10 @@ static char	*read_file(char *buffer, char *storage, int fd)
 			break ;
 		buffer[read_bytes] = '\0';
 		temp = storage;
-		storage = ft_strfjoin(temp, buffer);
+		storage = gnl_strfjoin(temp, buffer);
 		if (!storage)
 			return (free(temp), temp = NULL, NULL);
-		if (ft_strchr(storage, '\n'))
+		if (gnl_strchr(storage, '\n'))
 			break ;
 	}
 	return (storage);

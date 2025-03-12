@@ -6,7 +6,7 @@
 /*   By: maghumya <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/02 21:27:37 by maghumya          #+#    #+#             */
-/*   Updated: 2025/02/02 21:27:39 by maghumya         ###   ########.fr       */
+/*   Updated: 2025/03/12 22:27:41 by maghumya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,9 @@
 # endif
 
 char	*get_next_line(int fd);
-size_t	ft_strlen(const char *s);
-char	*ft_strchr(const char *s, int c);
-char	*ft_strdup(const char *s);
-char	*ft_substr(char const *s, unsigned int start, size_t len);
-char	*ft_strfjoin(char *s1, char *s2);
+size_t	gnl_strlen(const char *s);
+char	*gnl_strchr(const char *s, int c);
+char	*gnl_strdup(const char *s);
+char	*gnl_strfjoin(char *s1, char *s2);
 
 #endif

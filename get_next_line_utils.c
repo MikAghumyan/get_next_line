@@ -6,13 +6,13 @@
 /*   By: maghumya <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 21:07:18 by maghumya          #+#    #+#             */
-/*   Updated: 2025/02/02 21:26:18 by maghumya         ###   ########.fr       */
+/*   Updated: 2025/03/12 22:26:43 by maghumya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-size_t	ft_strlen(const char *s)
+size_t	gnl_strlen(const char *s)
 {
 	size_t	i;
 
@@ -24,7 +24,7 @@ size_t	ft_strlen(const char *s)
 	return (i);
 }
 
-char	*ft_strchr(const char *s, int c)
+char	*gnl_strchr(const char *s, int c)
 {
 	while (*s)
 	{
@@ -37,7 +37,7 @@ char	*ft_strchr(const char *s, int c)
 	return (NULL);
 }
 
-char	*ft_strdup(const char *s)
+char	*gnl_strdup(const char *s)
 {
 	char	*str;
 	size_t	len;
@@ -45,7 +45,7 @@ char	*ft_strdup(const char *s)
 
 	if (!s || !*s)
 		return (NULL);
-	len = ft_strlen(s) + 1;
+	len = gnl_strlen(s) + 1;
 	str = malloc(len);
 	if (str == NULL)
 		return (NULL);
@@ -59,14 +59,14 @@ char	*ft_strdup(const char *s)
 	return (str);
 }
 
-char	*ft_strfjoin(char *s1, char *s2)
+char	*gnl_strfjoin(char *s1, char *s2)
 {
 	char	*res;
 	size_t	i;
 	size_t	j;
 	size_t	len;
 
-	len = ft_strlen(s1) + ft_strlen(s2);
+	len = gnl_strlen(s1) + gnl_strlen(s2);
 	res = (char *)malloc(len + 1);
 	if (!res)
 		return (NULL);
