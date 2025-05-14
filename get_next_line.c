@@ -6,7 +6,7 @@
 /*   By: maghumya <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 21:07:34 by maghumya          #+#    #+#             */
-/*   Updated: 2025/03/12 22:26:43 by maghumya         ###   ########.fr       */
+/*   Updated: 2025/05/14 16:38:41 by maghumya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,8 @@ char	*get_next_line(int fd)
 	char		*temp;
 	char		*line;
 
+	if (fd == -1 && storage)
+		return (free(storage), storage = NULL, NULL);
 	temp = (char *)malloc(BUFFER_SIZE + 1);
 	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
 	{
