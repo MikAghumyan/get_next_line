@@ -6,81 +6,90 @@
 /*   By: maghumya <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 21:07:34 by maghumya          #+#    #+#             */
-/*   Updated: 2025/02/02 21:26:57 by maghumya         ###   ########.fr       */
+/*   Updated: 2025/05/17 15:35:48 by maghumya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-static char	*cut_line(char *line)
+static char	*fill_line(char *buffer, int fd)
 {
-	size_t	i;
-	char	*cut_buff;
+	ssize_t	read_size;
+	char	*temp;
+	char	*line;
 
+	line = ft_strdup(buffer);
 	if (!line)
 		return (NULL);
-	i = 0;
-	while (line[i] && line[i] != '\n')
-		i++;
-	if (!line[i] || !line[i + 1])
-		return (NULL);
-	cut_buff = ft_strdup(&(line[i + 1]));
-	if (!cut_buff)
-		return (NULL);
-	line[i + 1] = '\0';
-	if (!(*cut_buff))
-		cut_buff = NULL;
-	return (cut_buff);
-}
-
-static char	*read_file(char *buffer, char *storage, int fd)
-{
-	ssize_t	read_bytes;
-	char	*temp;
-
-	read_bytes = 1;
-	while (read_bytes > 0)
+	read_size = 1;
+	while (!ft_strchr(line, '\n') && read_size > 0)
 	{
-		read_bytes = read(fd, buffer, BUFFER_SIZE);
-		if (read_bytes < 0)
-			return (NULL);
-		else if (read_bytes == 0)
-			break ;
-		buffer[read_bytes] = '\0';
-		temp = storage;
-		storage = ft_strfjoin(temp, buffer);
-		if (!storage)
-			return (free(temp), temp = NULL, NULL);
-		if (ft_strchr(storage, '\n'))
-			break ;
+		read_size = read(fd, buffer, BUFFER_SIZE);
+		if (read_size > 0)
+		{
+			buffer[read_size] = '\0';
+			temp = ft_strjoin(line, buffer);
+			free(line);
+			line = temp;
+			if (!line)
+				return (NULL);
+		}
 	}
-	return (storage);
+	if (!line || !*line || read_size < 0)
+		return (free(line), line = NULL);
+	return (line);
 }
 
 char	*get_next_line(int fd)
 {
-	static char	*storage = NULL;
-	char		*temp;
+	static char	buffer[BUFFER_SIZE + 1];
 	char		*line;
+	char		*newline;
 
-	temp = (char *)malloc(BUFFER_SIZE + 1);
-	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
+	line = fill_line(buffer, fd);
+	if (!line)
 	{
-		free(temp);
-		temp = NULL;
-		free(storage);
-		storage = NULL;
+		buffer[0] = '\0';
 		return (NULL);
 	}
-	line = read_file(temp, storage, fd);
-	free(temp);
-	if (!line || !(*line))
+	newline = ft_strchr(line, '\n');
+	if (newline)
 	{
-		return (free(line), NULL);
+		ft_strlcpy(buffer, newline + 1, ft_strlen(newline + 1) + 1);
+		line[newline - line + 1] = '\0';
 	}
-	storage = cut_line(line);
+	else
+		buffer[0] = '\0';
 	return (line);
 }
+
+#include <fcntl.h>
+#include <stdio.h>
+
+int	main(int argc, char **argv)
+{
+	int		fd;
+	char	*s;
+
+	s = NULL;
+	(void)argc;
+	fd = open(argv[1], O_RDONLY);
+	// printf("line: %s", get_next_line(fd));
+	// printf("line: %s", get_next_line(fd));
+	// printf("line: %s", get_next_line(fd));
+	// printf("line: %s", get_next_line(fd));
+	// printf("line: %s", get_next_line(fd));
+	// printf("line: %s", get_next_line(fd));
+	// printf("line: %s", get_next_line(fd));
+	do
+	{
+		free(s);
+		s = get_next_line(fd);
+		printf("%s", s);
+	} while (s);
+	return (0);
+}
+
 /*
 #include <fcntl.h>
 #include <stdio.h>
