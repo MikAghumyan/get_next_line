@@ -6,7 +6,7 @@
 /*   By: maghumya <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 21:07:34 by maghumya          #+#    #+#             */
-/*   Updated: 2025/05/17 15:35:48 by maghumya         ###   ########.fr       */
+/*   Updated: 2025/05/17 16:10:27 by maghumya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ char	*get_next_line(int fd)
 		buffer[0] = '\0';
 	return (line);
 }
-
+/*
 #include <fcntl.h>
 #include <stdio.h>
 
@@ -87,56 +87,6 @@ int	main(int argc, char **argv)
 		s = get_next_line(fd);
 		printf("%s", s);
 	} while (s);
-	return (0);
-}
-
-/*
-#include <fcntl.h>
-#include <stdio.h>
-
-int	main(int argc, char **argv)
-{
-	int		fd;
-	char	*line;
-
-	if (argc == 2)
-	{
-		fd = open(argv[1], O_RDONLY);
-		if (fd < 0)
-		{
-			printf("Error: Could not open file\n");
-			return (1);
-		}
-		line = get_next_line(fd);
-		// while (line)
-		// {
-		// 	printf("%s", line);
-		// 	free(line);
-		// 	line = get_next_line(fd);
-		// }
-		get_next_line(fd);
-		get_next_line(fd);
-		get_next_line(fd);
-		get_next_line(fd);
-		get_next_line(fd);
-		get_next_line(fd);
-		get_next_line(fd);
-		get_next_line(fd);
-		get_next_line(fd);
-		get_next_line(fd);
-		get_next_line(fd);
-		get_next_line(fd);
-		get_next_line(fd);
-		get_next_line(fd);
-		get_next_line(fd);
-		// printf("%s\n", get_next_line(fd));
-		// printf("%s\n", get_next_line(fd));
-		// printf("%s\n", get_next_line(fd));
-		// printf("%s\n", get_next_line(fd));
-		close(fd);
-	}
-	else
-		printf("Error: Invalid number of arguments\n");
 	return (0);
 }
 */
